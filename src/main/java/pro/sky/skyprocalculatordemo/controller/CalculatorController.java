@@ -1,10 +1,13 @@
-package pro.sky.skyprocalculatordemo;
+package pro.sky.skyprocalculatordemo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.skyprocalculatordemo.service.CalculatorService;
 
 @RestController
+@RequestMapping("/calculator")
 public class CalculatorController {
     private final CalculatorService calculatorService;
 
@@ -12,34 +15,23 @@ public class CalculatorController {
         this.calculatorService = calculatorService;
     }
 
-    @GetMapping
-
-    public String hello() {
-        return calculatorService.hello();
-    }
-
-    @GetMapping(path = "/calculator")
-    public String helloCalculator() {
-        return calculatorService.helloCalculator();
-    }
-
-    @GetMapping(path = "/calculator/plus")
+    @GetMapping(path = "/plus")
     public String sumOfNumber(@RequestParam("num1") int number1, @RequestParam("num2") int number2) {
-        return calculatorService.sumOfNumber(number1, number2);
+        return calculatorService.sumOfNumber(number1, number2).toString();
     }
 
-    @GetMapping(path = "/calculator/minus")
+    @GetMapping(path = "/minus")
     public String differenceOfNumber(@RequestParam("num1") int number1, @RequestParam("num2") int number2) {
-        return calculatorService.differenceOfNumber(number1, number2);
+        return calculatorService.differenceOfNumber(number1, number2).toString();
     }
 
-    @GetMapping(path = "/calculator/multiply")
+    @GetMapping(path = "/multiply")
     public String compositionOfNumber(@RequestParam("num1") int number1, @RequestParam("num2") int number2) {
-        return calculatorService.compositionOfNumber(number1, number2);
+        return calculatorService.compositionOfNumber(number1, number2).toString();
     }
 
-    @GetMapping(path = "/calculator/divide")
+    @GetMapping(path = "/divide")
     public String divisionOfNumber(@RequestParam("num1") int number1, @RequestParam("num2") int number2) {
-        return calculatorService.divisionOfNumber(number1, number2);
+        return calculatorService.divisionOfNumber(number1, number2).toString();
     }
 }
